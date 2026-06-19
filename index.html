@@ -136,7 +136,7 @@ canvas#neural-canvas{
 }
 h1{
   font-family:var(--font);
-  font-size:clamp(3.4rem,8vw,6.5rem);
+  font-size:clamp(2.9rem,7.5vw,6rem);
   font-weight:800;
   letter-spacing:-.04em;
   line-height:.95;
@@ -268,6 +268,7 @@ h1{
   transition:border-color .25s;
   box-shadow:0 2px 12px rgba(0,0,0,0.25);
 }
+.exp-card.triple{grid-template-columns:220px 220px 1fr;}
 .exp-card:hover{border-color:var(--indigo-glow);box-shadow:0 6px 28px rgba(99,102,241,0.15);}
 .exp-visual{
   background:var(--void2);
@@ -515,11 +516,11 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
     <span class="nav-logo-text">ARYAN RAHUL<span> SHAH</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#experience">exp</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#ai-chat">ai_chat</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#ai-chat">AI Chat</a></li>
   </ul>
   <a href="mailto:shah.aryanra@northeastern.edu" class="nav-status" style="text-decoration:none;cursor:pointer;">
     <span class="blink"></span>HIRE ME
@@ -613,14 +614,66 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-    <p class="sys-label"><span class="lbracket">[</span>01<span class="lbracket">]</span> about.init()</p>
+    <p class="sys-label"><span class="lbracket">[</span>01<span class="lbracket">]</span> About</p>
+    <h2>Where supply chain meets intelligent systems</h2>
+    <div class="sub" style="margin-bottom:2rem;">3 roles · Mumbai → Boston · manufacturing, logistics, e-commerce</div>
+
+    <!-- ERP Animation full width -->
+    <div style="display:flex;justify-content:center;align-items:center;background:var(--void3);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:2.5rem;">
+      <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;height:auto;">
+        <!-- Central ERP hub - centered -->
+        <circle cx="250" cy="80" r="28" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="110" stroke-dashoffset="110" style="animation:dash 1.2s ease .2s forwards"/>
+        <text x="250" y="77" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#F59E0B" style="animation:scaleIn .4s ease 1.2s both">ORACLE</text>
+        <text x="250" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#F59E0B80" style="animation:scaleIn .4s ease 1.4s both">ERP</text>
+
+        <!-- LEFT SIDE MODULES -->
+        <!-- Demand Planning -->
+        <line x1="222" y1="80" x2="150" y2="80" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="72" stroke-dashoffset="72" style="animation:dash .6s ease 1.6s forwards"/>
+        <rect x="60" y="66" width="90" height="28" rx="4" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2s both"/>
+        <text x="105" y="83" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#F59E0B" style="animation:scaleIn .3s ease 2.1s both">DEMAND PLAN</text>
+        <circle cx="60" cy="80" r="4" fill="#F59E0B" style="animation:floatY 2s ease-in-out infinite"/>
+
+        <!-- S&OP -->
+        <line x1="228" y1="60" x2="155" y2="28" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="85" stroke-dashoffset="85" style="animation:dash .6s ease 1.7s forwards"/>
+        <rect x="60" y="14" width="90" height="28" rx="4" fill="#10B98115" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 2.1s both"/>
+        <text x="105" y="31" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#10B981" style="animation:scaleIn .3s ease 2.2s both">S&amp;OP</text>
+        <circle cx="60" cy="28" r="4" fill="#10B981" style="animation:floatY 2.4s .3s ease-in-out infinite"/>
+
+        <!-- KPI -->
+        <line x1="228" y1="100" x2="155" y2="132" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="85" stroke-dashoffset="85" style="animation:dash .6s ease 1.8s forwards"/>
+        <rect x="60" y="118" width="90" height="28" rx="4" fill="#6366F115" stroke="#6366F160" stroke-width="1" style="animation:scaleIn .4s ease 2.2s both"/>
+        <text x="105" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#818CF8" style="animation:scaleIn .3s ease 2.3s both">KPI REPORTING</text>
+        <circle cx="60" cy="132" r="4" fill="#818CF8" style="animation:floatY 1.8s .6s ease-in-out infinite"/>
+
+        <!-- RIGHT SIDE MODULES -->
+        <!-- Supplier -->
+        <line x1="278" y1="80" x2="350" y2="80" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="72" stroke-dashoffset="72" style="animation:dash .6s ease 1.6s forwards"/>
+        <rect x="350" y="66" width="90" height="28" rx="4" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2s both"/>
+        <text x="395" y="83" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#F59E0B" style="animation:scaleIn .3s ease 2.1s both">SUPPLIER MGT</text>
+        <circle cx="440" cy="80" r="4" fill="#F59E0B" style="animation:floatY 2.2s .2s ease-in-out infinite"/>
+
+        <!-- Inventory -->
+        <line x1="272" y1="60" x2="345" y2="28" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="85" stroke-dashoffset="85" style="animation:dash .6s ease 1.7s forwards"/>
+        <rect x="350" y="14" width="90" height="28" rx="4" fill="#10B98115" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 2.1s both"/>
+        <text x="395" y="31" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#10B981" style="animation:scaleIn .3s ease 2.2s both">INVENTORY</text>
+        <circle cx="440" cy="28" r="4" fill="#10B981" style="animation:floatY 2.6s .5s ease-in-out infinite"/>
+
+        <!-- Safety Stock / Replenishment -->
+        <line x1="272" y1="100" x2="345" y2="132" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="85" stroke-dashoffset="85" style="animation:dash .6s ease 1.8s forwards"/>
+        <rect x="350" y="118" width="90" height="28" rx="4" fill="#6366F115" stroke="#6366F160" stroke-width="1" style="animation:scaleIn .4s ease 2.2s both"/>
+        <text x="395" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#818CF8" style="animation:scaleIn .3s ease 2.3s both">REPLENISHMENT</text>
+        <circle cx="440" cy="132" r="4" fill="#818CF8" style="animation:floatY 2s .8s ease-in-out infinite"/>
+
+        <!-- Orbit ring pulse -->
+        <circle cx="250" cy="80" r="45" fill="none" stroke="#F59E0B10" stroke-width="1" style="animation:blinkDot 2.5s ease-in-out infinite"/>
+      </svg>
+    </div>
+
     <div class="about-grid">
       <div class="about-body">
-        <h2>Where supply chain meets intelligent systems</h2>
-        <div class="sub">3 roles · Mumbai → Boston · manufacturing, logistics, e-commerce</div>
         <p>I started at <strong>Ankur Fabrics</strong> coordinating 250+ daily orders and last-mile logistics — where precision at the SKU level became instinct. That grounding in operational reality is what makes AI tools useful rather than theoretical.</p>
         <p>At <strong>Sambhav Transmission</strong> I owned $500K+ in global procurement spend, running SQL-backed supplier performance reviews and building dashboards that turned raw ERP data into sourcing decisions. <span class="ai-tag">◈ data-driven</span></p>
-        <p>Now at <strong>Tighe Logistics</strong> (co-op, Northeastern MS), I'm applying Oracle ERP, SNAP Fulfill, and transaction-level SQL queries to Amazon Robotics operations — the sharp edge of where AI-enabled logistics actually runs.</p>
+        <p>At <strong>Tighe Logistics</strong>, Boston, MA, I applied Oracle ERP, SNAP Fulfill, and transaction-level SQL queries to Amazon Robotics operations — where AI-enabled logistics met real-world supply chain execution.</p>
       </div>
       <div>
         <p class="sys-label" style="margin-bottom:1.25rem;">Education</p>
@@ -688,7 +741,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
             <!-- Pulse dot on trend -->
             <circle cx="103" cy="44" r="3" fill="#F59E0B" style="animation:blinkDot 1.5s ease-in-out infinite"/>
             <!-- Label -->
-            <text x="70" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#6366F180" letter-spacing="1">ERP ANALYST</text>
+            <text x="70" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#6366F180" letter-spacing="1">ANALYST</text>
           </svg>
           <div class="exp-visual-label">Supply Chain Coordinator</div>
         </div>
@@ -830,7 +883,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
-    <p class="sys-label"><span class="lbracket">[</span>03<span class="lbracket">]</span> skills.map()</p>
+    <p class="sys-label">Skills</p>
     <h2>The stack I operate in</h2>
     <div class="sub" style="margin-bottom:1.5rem;">systems · data · operations · planning</div>
     <div class="skills-os">
@@ -885,7 +938,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <!-- PROJECTS -->
 <section id="projects">
   <div class="wrap">
-    <p class="sys-label"><span class="lbracket">[</span>04<span class="lbracket">]</span> projects.render()</p>
+    <p class="sys-label">Projects</p>
     <h2>Applied work</h2>
     <div class="sub" style="margin-bottom:1.5rem;">operations work beyond the day job</div>
     <div class="exp-cards">
@@ -894,57 +947,41 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
       <div class="exp-card">
         <div class="exp-visual" style="min-height:260px;position:relative;overflow:hidden;">
           <svg class="anim-scene" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:160px;">
-
             <!-- PHONE / listing screen -->
             <rect x="48" y="8" width="44" height="72" rx="5" fill="none" stroke="#6366F1" stroke-width="1.5" stroke-dasharray="80" stroke-dashoffset="80" style="animation:dash 1s ease .1s forwards"/>
             <rect x="48" y="8" width="44" height="10" rx="5" fill="#6366F120" style="animation:scaleIn .4s ease .9s both"/>
-            <!-- product image placeholder -->
             <rect x="53" y="22" width="34" height="22" rx="2" fill="#6366F115" stroke="#6366F140" stroke-width="1" style="animation:scaleIn .4s ease 1s both"/>
-            <!-- shirt icon in listing -->
             <path d="M62,27 L65,25 L70,28 L75,25 L78,27 L75,30 L75,40 L65,40 L65,30 Z" fill="none" stroke="#818CF8" stroke-width="1" stroke-dasharray="40" stroke-dashoffset="40" style="animation:dash .7s ease 1.2s forwards"/>
-            <!-- listing text lines -->
             <rect x="53" y="47" width="28" height="2" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 1.4s both"/>
             <rect x="53" y="52" width="20" height="2" rx="1" fill="#6366F140" style="animation:scaleIn .3s ease 1.5s both"/>
-            <!-- price tag -->
             <rect x="53" y="57" width="14" height="7" rx="2" fill="#F59E0B20" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .3s ease 1.6s both"/>
             <text x="60" y="63" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#F59E0B" style="animation:scaleIn .3s ease 1.7s both">$24.99</text>
-            <!-- star rating -->
             <text x="60" y="73" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#F59E0B" style="animation:scaleIn .3s ease 1.8s both">★★★★★</text>
-
-            <!-- PACKING BOX - left -->
+            <!-- PACKING BOX -->
             <rect x="6" y="88" width="32" height="26" rx="2" fill="#6366F110" stroke="#6366F180" stroke-width="1.2" stroke-dasharray="50" stroke-dashoffset="50" style="animation:dash .8s ease 1.8s forwards"/>
             <rect x="6" y="88" width="32" height="8" rx="0" fill="#6366F120" style="animation:scaleIn .3s ease 2.4s both"/>
-            <!-- tape lines on box -->
             <line x1="22" y1="88" x2="22" y2="114" stroke="#6366F160" stroke-width="1" stroke-dasharray="15" stroke-dashoffset="15" style="animation:dash .4s ease 2.5s forwards"/>
-            <!-- box label -->
             <rect x="10" y="98" width="20" height="12" rx="1" fill="#F59E0B10" stroke="#F59E0B40" stroke-width=".8" style="animation:scaleIn .3s ease 2.6s both"/>
             <text x="20" y="107" text-anchor="middle" font-family="JetBrains Mono" font-size="4" fill="#F59E0B80" style="animation:scaleIn .3s ease 2.7s both">SKU-042</text>
-
-            <!-- SHIPPING TRUCK - right, animated -->
+            <!-- SHIPPING TRUCK -->
             <g style="animation:moveRight 3s ease-in-out 2.8s infinite">
               <rect x="90" y="98" width="28" height="15" rx="2" fill="#6366F115" stroke="#6366F1" stroke-width="1.2"/>
               <rect x="108" y="92" width="14" height="21" rx="2" fill="#6366F120" stroke="#6366F180" stroke-width="1"/>
-              <circle cx="97" cy="115" r="3.5" fill="#6366F1" />
+              <circle cx="97" cy="115" r="3.5" fill="#6366F1"/>
               <circle cx="114" cy="115" r="3.5" fill="#6366F1"/>
             </g>
-            <!-- road -->
             <line x1="5" y1="120" x2="135" y2="120" stroke="#6366F130" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash 2s ease 2s forwards"/>
-
-            <!-- FORECAST CHART - bottom -->
+            <!-- FORECAST CHART -->
             <rect x="5" y="128" width="130" height="24" rx="3" fill="#0C0D15" stroke="#6366F130" stroke-width="1" style="animation:scaleIn .4s ease 3s both"/>
             <text x="10" y="136" font-family="JetBrains Mono" font-size="4.5" fill="#6366F180" style="animation:scaleIn .3s ease 3.2s both">INVENTORY FORECAST</text>
-            <!-- forecast bars -->
             <rect x="10" y="140" width="8" height="8" rx="1" fill="#6366F140" style="animation:scaleIn .3s ease 3.3s both"/>
             <rect x="21" y="137" width="8" height="11" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 3.4s both"/>
             <rect x="32" y="134" width="8" height="14" rx="1" fill="#818CF8" style="animation:scaleIn .3s ease 3.5s both"/>
             <rect x="43" y="136" width="8" height="12" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 3.6s both"/>
             <rect x="54" y="133" width="8" height="15" rx="1" fill="#818CF8" style="animation:scaleIn .3s ease 3.7s both"/>
             <rect x="65" y="135" width="8" height="13" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 3.8s both"/>
-            <!-- forecast line -->
             <polyline points="14,144 25,141 36,137 47,139 58,136 69,138 80,133 91,135 102,131" fill="none" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="100" stroke-dashoffset="100" style="animation:dash 1s ease 3.8s forwards"/>
-            <!-- live dot -->
             <circle cx="102" cy="131" r="2.5" fill="#F59E0B" style="animation:blinkDot 1.2s ease-in-out infinite"/>
-
             <!-- Floating badges -->
             <g style="animation:floatY 3s ease-in-out infinite">
               <rect x="88" y="72" width="40" height="13" rx="3" fill="#F59E0B15" stroke="#F59E0B40" stroke-width=".8"/>
@@ -954,7 +991,6 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
               <rect x="5" y="72" width="38" height="13" rx="3" fill="#10B98115" stroke="#10B98140" stroke-width=".8"/>
               <text x="24" y="81" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#10B981">80% STOCK</text>
             </g>
-
             <text x="70" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#6366F170" letter-spacing="1">AMAZON SELLER CENTRAL</text>
           </svg>
           <div class="exp-visual-label">E-commerce Operations</div>
@@ -984,94 +1020,6 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
         </div>
       </div>
 
-      <!-- PROJECT 2: ERP SYSTEMS -->
-      <div class="exp-card">
-        <div class="exp-visual amb" style="min-height:260px;">
-          <svg class="anim-scene" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:160px;">
-
-            <!-- Central ERP hub -->
-            <circle cx="70" cy="68" r="20" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="80" stroke-dashoffset="80" style="animation:dash 1.2s ease .2s forwards"/>
-            <text x="70" y="66" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F59E0B" style="animation:scaleIn .4s ease 1.2s both">ORACLE</text>
-            <text x="70" y="74" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F59E0B80" style="animation:scaleIn .4s ease 1.4s both">ERP</text>
-
-            <!-- Spoke modules -->
-            <!-- Demand Planning - top -->
-            <line x1="70" y1="48" x2="70" y2="18" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="30" stroke-dashoffset="30" style="animation:dash .5s ease 1.6s forwards"/>
-            <rect x="52" y="6" width="36" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2s both"/>
-            <text x="70" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.1s both">DEMAND PLAN</text>
-
-            <!-- Supplier Mgmt - top right -->
-            <line x1="84" y1="54" x2="108" y2="30" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 1.7s forwards"/>
-            <rect x="100" y="20" width="34" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2.1s both"/>
-            <text x="117" y="30" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.2s both">SUPPLIER</text>
-
-            <!-- Replenishment - right -->
-            <line x1="90" y1="68" x2="120" y2="68" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="30" stroke-dashoffset="30" style="animation:dash .5s ease 1.8s forwards"/>
-            <rect x="118" y="61" width="18" height="14" rx="3" fill="#6366F115" stroke="#6366F160" stroke-width="1" style="animation:scaleIn .4s ease 2.2s both"/>
-            <text x="127" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#818CF8" style="animation:scaleIn .3s ease 2.3s both">REPL</text>
-
-            <!-- Inventory - bottom right -->
-            <line x1="84" y1="82" x2="108" y2="106" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 1.9s forwards"/>
-            <rect x="100" y="104" width="34" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2.3s both"/>
-            <text x="117" y="114" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.4s both">INVENTORY</text>
-
-            <!-- Safety Stock - bottom -->
-            <line x1="70" y1="88" x2="70" y2="114" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="26" stroke-dashoffset="26" style="animation:dash .5s ease 2s forwards"/>
-            <rect x="48" y="112" width="44" height="14" rx="3" fill="#10B98115" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 2.4s both"/>
-            <text x="70" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#10B981" style="animation:scaleIn .3s ease 2.5s both">SAFETY STOCK</text>
-
-            <!-- S&OP - bottom left -->
-            <line x1="56" y1="82" x2="32" y2="106" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 2.1s forwards"/>
-            <rect x="6" y="104" width="28" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2.5s both"/>
-            <text x="20" y="114" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.6s both">S&OP</text>
-
-            <!-- KPI - left -->
-            <line x1="50" y1="68" x2="20" y2="68" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="30" stroke-dashoffset="30" style="animation:dash .5s ease 2.2s forwards"/>
-            <rect x="4" y="61" width="18" height="14" rx="3" fill="#6366F115" stroke="#6366F160" stroke-width="1" style="animation:scaleIn .4s ease 2.6s both"/>
-            <text x="13" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#818CF8" style="animation:scaleIn .3s ease 2.7s both">KPI</text>
-
-            <!-- top-left spoke -->
-            <line x1="56" y1="54" x2="32" y2="30" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 2.3s forwards"/>
-            <rect x="6" y="20" width="34" height="14" rx="3" fill="#10B98115" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 2.7s both"/>
-            <text x="23" y="30" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#10B981" style="animation:scaleIn .3s ease 2.8s both">REPLENISH</text>
-
-            <!-- Orbit ring pulse -->
-            <circle cx="70" cy="68" r="35" fill="none" stroke="#F59E0B15" stroke-width="1" style="animation:blinkDot 2.5s ease-in-out infinite"/>
-
-            <!-- Floating data packets on spokes -->
-            <circle cx="70" cy="33" r="2.5" fill="#F59E0B" style="animation:floatY 2s ease-in-out infinite"/>
-            <circle cx="100" cy="42" r="2" fill="#F59E0B80" style="animation:floatY 2.2s .4s ease-in-out infinite"/>
-            <circle cx="40" cy="42" r="2" fill="#10B98180" style="animation:floatY 1.8s .8s ease-in-out infinite"/>
-
-            <text x="70" y="152" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#F59E0B70" letter-spacing="1">ERP ECOSYSTEM</text>
-          </svg>
-          <div class="exp-visual-label">ERP Systems Design</div>
-        </div>
-        <div class="exp-body">
-          <div class="exp-header">
-            <div class="exp-date">2024 – 2025</div>
-            <div class="exp-co">Northeastern University</div>
-            <div class="exp-loc">Boston, MA · Graduate Research</div>
-          </div>
-          <div class="exp-role">ERP Systems for Inventory Management</div>
-          <div class="exp-summary">
-            Designed a complete Oracle ERP-integrated inventory ecosystem — mapping demand planning, safety stock logic, replenishment triggers, supplier management, S&OP cycles, and KPI reporting into a unified operational framework.<br/><br/>
-            Applied the framework directly during Tighe Logistics co-op, bridging academic design with live $2M+ inventory operations — and validating replenishment and forecast bias workflows in a real Amazon Robotics environment.
-          </div>
-          <div class="exp-skills">
-            <span class="exp-skill amb">Oracle ERP</span>
-            <span class="exp-skill amb">Demand Planning</span>
-            <span class="exp-skill amb">Safety Stock</span>
-            <span class="exp-skill amb">S&OP</span>
-            <span class="exp-skill">Replenishment Logic</span>
-            <span class="exp-skill">Supplier Management</span>
-            <span class="exp-skill">KPI Reporting</span>
-            <span class="exp-skill grn">Inventory Optimization</span>
-            <span class="exp-skill grn">Forecast Bias Analysis</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1079,7 +1027,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <!-- AI CHAT -->
 <section id="ai-chat">
   <div class="wrap">
-    <p class="sys-label"><span class="lbracket">[</span>05<span class="lbracket">]</span> ai_assistant.connect()</p>
+    <p class="sys-label">AI Assistant</p>
     <div class="ai-grid">
       <div class="ai-intro">
         <h2>Ask my AI anything</h2>
@@ -1119,7 +1067,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <p class="sys-label"><span class="lbracket">[</span>06<span class="lbracket">]</span> contact.open()</p>
+    <p class="sys-label"><span class="lbracket">[</span>06<span class="lbracket">]</span> Contact</p>
     <div class="contact-grid">
       <div class="contact-copy">
         <h2>Let's build something better</h2>
@@ -1146,7 +1094,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <footer>
   <div class="wrap">
     <span>aryan.shah · supply_chain + ai</span>
-    <span>boston_ma · 2025</span>
+    <span>boston_ma · 2026</span>
   </div>
 </footer>
 
@@ -1306,40 +1254,63 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 })();
 
 /* ── AI CHAT ── */
-const CONTEXT=`You are an AI embedded in Aryan Shah's AI-powered supply chain portfolio. Answer questions from recruiters, hiring managers, and supply chain professionals about his background.
+const CONTEXT=`You are an AI representing Aryan Shah on his personal portfolio website. You speak on his behalf to recruiters, hiring managers, and supply chain professionals.
 
-ARYAN SHAH:
+TONE & STYLE:
+- Speak in first person as Aryan (e.g. "I worked on...", "In my experience...", "I believe...")
+- Be warm, confident, and professional — like Aryan himself is answering
+- Keep answers SHORT and easy to read — max 3-4 sentences for most questions
+- For situational questions use one real example, one result, one learning — no long paragraphs
+- Write in simple, clear language — no jargon, no bullet points, just natural sentences
+- Sound like a confident human, not a robot reading a resume
+
+ARYAN SHAH — FULL BACKGROUND:
+Name: Aryan Rahul Shah
 Email: shah.aryanra@northeastern.edu | Phone: (857) 339-8320 | Location: Boston, MA
 
 EDUCATION:
-- Northeastern University: MS Project Management, GPA 3.72 (2024–2026). Courses: ERP Systems for Inventory Management, Project Risk Management, Supplier Management
-- Nagindas Khandwala College: BMS E-commerce Operations, GPA 3.8 (2020–2023)
+- Northeastern University, Boston MA: MS Project Management, GPA 3.72 (2024–2026). Courses: ERP Systems for Inventory Management, Project Risk Management, Supplier Management
+- Nagindas Khandwala College, Mumbai: BMS E-commerce Operations, GPA 3.8 (2020–2023)
 
 EXPERIENCE:
+
 1. Supply Chain Coordinator & Business Analyst Co-op — Tighe Logistics, Boston (Jul–Dec 2025)
-   - +8% inventory accuracy across $2M+ inventory using Oracle ERP, SNAP Fulfill, EDI
-   - +9% planning decision accuracy via weekly forecast accuracy/bias reports
-   - -15% fulfillment delays via SQL root cause analysis with Amazon Robotics ops leads
+- Managed $2M+ inventory operations overseeing end-to-end inbound and outbound workflows — receiving, putaway, order fulfillment, and shipment coordination using Oracle ERP, SNAP Fulfill, and EDI
+- Achieved 8% inventory accuracy uplift by partnering with warehouse managers to close order flow gaps
+- Built weekly forecast accuracy and bias reports, improving planning decision accuracy by 9%
+- Worked closely with the Amazon Robotics team on-site, using SQL to surface transaction-level discrepancies and cut fulfillment delays by 15%
 
 2. Sourcing & Procurement Associate — Sambhav Transmission, Mumbai (Mar 2023–Aug 2024)
-   - -10% material availability gaps through cross-functional alignment
-   - +12% vendor line fill rate via Excel/Oracle ERP supplier KPI dashboards
-   - Managed 15+ international vendors, $500K+ annual spend; +6% operational efficiency via structured RFQ cycles
+- Reduced material availability gaps by 10% by aligning sourcing with planning and ops teams
+- Raised vendor line fill rate by 12% through supplier KPI dashboards in Excel and Oracle ERP
+- Managed end-to-end RFQ cycles with 15+ international vendors across $500K+ annual spend
+- Improved operational efficiency by 6% through structured cost analysis and lead-time management
 
 3. E-commerce Specialist & Logistics Coordinator — Ankur Fabrics, Mumbai (Jan–Dec 2022)
-   - 98% on-time dispatch, $300K annual order value, 250+ daily orders, -7% delays
-   - -9% stock discrepancies via 500+ SKU monthly reconciliation
-   - +8% inventory reliability via Excel and WMS tools
-
-SKILLS: Oracle ERP, SAP, SNAP Fulfill, EDI, SQL, Power BI, Advanced Excel, Jira, Procurement, Inventory Management, Demand Planning, Safety Stock, Replenishment, Supplier Management, KPI Reporting, S&OP, Root Cause Analysis, SOP Development, Vendor Negotiation
+- Achieved 98% on-time dispatch across $300K annual order value, 250+ daily orders with 3PL providers
+- Reduced stock discrepancies by 9% via monthly reconciliations across 500+ SKUs
+- Improved inventory reliability by 8% using advanced Excel and WMS tools
 
 PROJECTS:
-- SKU Optimization (Amazon Seller Central, 2022): +11% sales, 80% stock availability, -7% delays, Power BI dashboards
-- ERP Systems for Inventory Management (Northeastern, applied at Tighe Logistics)
+- SKU Optimization (Amazon Seller Central, 2022): Built end-to-end Amazon storefront — product listing, pricing, packing workflows, 3PL shipping, live inventory forecasting. Scaled sales by 11%, maintained 80% stock availability, reduced delays by 7%
+- ERP Systems for Inventory Management (Northeastern, 2024-2025): Designed full Oracle ERP-integrated inventory ecosystem covering demand planning, safety stock, replenishment, S&OP, and KPI reporting. Applied directly at Tighe Logistics co-op
 
-STATUS: Open to full-time supply chain, procurement, operations roles. Boston, MA. Graduating Jun 2026.
+SKILLS: Oracle ERP, SAP, SNAP Fulfill, EDI Systems, SQL, Power BI, Advanced Excel, Jira, Procurement, Inventory Management, Demand Planning, Safety Stock, Replenishment, Supplier Management, KPI Reporting, S&OP, Root Cause Analysis, SOP Development, Vendor Negotiation, Cross-functional Coordination
 
-Keep answers to 2-4 sentences, helpful and specific. For anything not covered, direct to shah.aryanra@northeastern.edu.`;
+PERSONALITY & WORK STYLE:
+- Detail-oriented and data-driven — always backs decisions with numbers
+- Proactive communicator who keeps all stakeholders aligned
+- Thrives in cross-functional environments, comfortable working with warehouse teams, ops leads, and senior management
+- Continuous improvement mindset — always looking for the next optimization
+- Calm under pressure, especially during supply disruptions
+
+VALUE PROPOSITION:
+Identifies opportunities in 30 days, optimizes processes in 60 days, delivers measurable business impact within 90 days.
+
+STATUS: Open to full-time supply chain, procurement, and operations roles. Based in Boston, MA. Graduating June 2026.
+
+For anything not covered, say: "That's a great question — I'd love to discuss it directly. Feel free to reach out at shah.aryanra@northeastern.edu."`;
+
 
 let hist=[],busy=false;
 const msgs=document.getElementById('chat-msgs');
