@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aryan Shah — AI-Driven Supply Chain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#0F1624;
+  --void2:#152032;
+  --void3:#1A2840;
+  --void4:#1E304A;
+  --indigo:#6366F1;
+  --indigo2:#818CF8;
+  --indigo-dim:rgba(99,102,241,0.12);
+  --indigo-glow:rgba(99,102,241,0.3);
+  --amber:#F59E0B;
+  --amber2:#FBB740;
+  --amber-dim:rgba(245,158,11,0.12);
+  --amber-glow:rgba(245,158,11,0.3);
+  --green:#10B981;
+  --green-dim:rgba(16,185,129,0.12);
+  --snow:#F0F4FF;
+  --slate:#94A3B8;
+  --slate2:#4A6080;
+  --border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.15);
+  --card:#1C2E45;
+  --font:'Syne',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--snow);
+  font-family:var(--font);
+  font-size:15px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1.5rem,5vw,4rem);
+  height:58px;
+  background:rgba(15,22,36,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.nav-logo-mark{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--indigo),var(--amber));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;color:#fff;
+  letter-spacing:0.02em;
+}
+.nav-logo-text{
+  font-family:var(--mono);font-size:12px;font-weight:400;
+  color:var(--snow);letter-spacing:0.06em;
+}
+.nav-logo-text span{color:var(--indigo2);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  font-family:var(--mono);font-size:11.5px;color:var(--slate);
+  text-decoration:none;letter-spacing:0.05em;transition:color .2s;
+}
+.nav-links a:hover{color:var(--snow);}
+.nav-status{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.08em;
+  color:var(--green);padding:5px 12px;
+  background:var(--green-dim);border:1px solid rgba(16,185,129,.25);
+  border-radius:4px;
+}
+.blink{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.8s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* LAYOUT */
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);}
+section{padding:6rem 0;}
+
+/* LABELS */
+.sys-label{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--indigo2);margin-bottom:2rem;
+}
+.sys-label .lbracket{color:var(--slate2);}
+.sys-label::after{content:'';width:40px;height:1px;background:var(--indigo-glow);}
+
+h2{
+  font-size:clamp(1.7rem,3.5vw,2.4rem);
+  font-weight:700;letter-spacing:-0.025em;
+  color:var(--snow);margin-bottom:.5rem;
+}
+.sub{font-family:var(--mono);font-size:.85rem;color:var(--slate);margin-bottom:2.5rem;letter-spacing:.03em;}
+
+/* ===== HERO ===== */
+#hero{
+  padding-top:0;padding-bottom:0;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.hero-canvas-wrap{
+  position:relative;width:100%;
+  flex:1;display:flex;flex-direction:column;
+}
+canvas#neural-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:.55;pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:9rem clamp(1.5rem,5vw,4rem) 0;
+  max-width:1040px;margin:0 auto;width:100%;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:400;
+  color:var(--indigo2);padding:5px 14px;
+  background:var(--indigo-dim);border:1px solid var(--indigo-glow);
+  border-radius:4px;margin-bottom:2rem;letter-spacing:.08em;
+}
+h1{
+  font-family:var(--font);
+  font-size:clamp(3.4rem,8vw,6.5rem);
+  font-weight:800;
+  letter-spacing:-.04em;
+  line-height:.95;
+  margin-bottom:1.75rem;
+}
+.h1-line1{display:block;color:var(--snow);}
+.h1-line2{
+  display:block;
+  background:linear-gradient(100deg,var(--indigo2) 0%,var(--amber2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-desc{
+  font-family:var(--mono);font-size:.9rem;
+  color:var(--slate);max-width:540px;
+  line-height:1.8;margin-bottom:2.5rem;font-weight:300;
+}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:3.5rem;}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 24px;font-size:13px;font-weight:600;
+  font-family:var(--font);border-radius:6px;
+  text-decoration:none;cursor:pointer;border:1px solid transparent;
+  letter-spacing:.01em;transition:all .18s;
+}
+.btn-indigo{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+.btn-indigo:hover{background:var(--indigo2);border-color:var(--indigo2);}
+.btn-amber{background:var(--amber);color:var(--void);border-color:var(--amber);font-weight:700;}
+.btn-amber:hover{background:var(--amber2);}
+.btn-ghost{background:transparent;color:var(--slate);border-color:var(--border2);}
+.btn-ghost:hover{color:var(--snow);border-color:var(--indigo-glow);}
+
+/* TERMINAL KPI STRIP */
+.kpi-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;
+  background:var(--card);
+  box-shadow:0 4px 24px rgba(0,0,0,0.3);
+}
+.kpi-cell{
+  padding:1.4rem 1.75rem;
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.kpi-cell:last-child{border-right:none;}
+.kpi-cell-top{
+  font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate2);margin-bottom:.6rem;
+}
+.kpi-val{
+  font-family:var(--mono);font-size:1.85rem;
+  font-weight:500;letter-spacing:-.035em;
+  line-height:1;color:var(--snow);
+}
+.kpi-val .ku{font-size:1rem;color:var(--indigo2);}
+.kpi-bar-fill{
+  height:2px;border-radius:1px;
+  margin-top:.75rem;
+  background:linear-gradient(90deg,var(--indigo),var(--amber2));
+  transform-origin:left;
+}
+.hero-kpi-wrap{
+  position:relative;z-index:2;
+  padding:0 clamp(1.5rem,5vw,4rem) 4rem;
+  max-width:1040px;margin:0 auto;width:100%;
+}
+
+/* ===== DIVIDER BAR ===== */
+.div-bar{
+  background:var(--void2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:1.25rem 0;overflow:hidden;
+}
+.ticker-track{
+  display:flex;gap:0;
+  white-space:nowrap;
+  animation:ticker 35s linear infinite;
+  width:max-content;
+}
+.ticker-track span{
+  font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;color:var(--indigo2);
+  padding:0 1.5rem;
+}
+.ticker-track span.dim{color:var(--slate2);}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== ABOUT ===== */
+#about{border-top:1px solid var(--border);}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:5rem;align-items:start;}
+.about-body p{font-family:var(--mono);font-size:13.5px;color:var(--slate);margin-bottom:1rem;line-height:1.85;font-weight:300;}
+.about-body p strong{color:var(--snow);font-weight:500;}
+.about-body p .ai-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;padding:1px 7px;border-radius:3px;
+  background:var(--indigo-dim);color:var(--indigo2);
+  border:1px solid var(--indigo-glow);vertical-align:middle;
+}
+.edu-stack{display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem;}
+.edu-card{
+  background:var(--card);border:1px solid var(--border);
+  padding:1.2rem 1.4rem;border-radius:8px;
+  transition:border-color .2s;position:relative;overflow:hidden;
+}
+.edu-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--indigo-dim),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.edu-card:hover{border-color:var(--indigo-glow);}
+.edu-card:hover::before{opacity:1;}
+.edu-school{font-size:13.5px;font-weight:700;color:var(--snow);position:relative;}
+.edu-deg{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-top:4px;position:relative;}
+.edu-foot{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap;position:relative;}
+.chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;padding:3px 9px;border-radius:3px;}
+.chip-i{background:var(--indigo-dim);color:var(--indigo2);border:1px solid var(--indigo-glow);}
+.chip-g{background:rgba(255,255,255,.06);color:var(--slate2);border:1px solid var(--border);}
+
+/* ===== EXPERIENCE ===== */
+#experience{border-top:1px solid var(--border);}
+.exp-cards{display:flex;flex-direction:column;gap:1.5rem;}
+.exp-card{
+  display:grid;grid-template-columns:260px 1fr;
+  border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;background:var(--card);
+  transition:border-color .25s;
+  box-shadow:0 2px 12px rgba(0,0,0,0.25);
+}
+.exp-card:hover{border-color:var(--indigo-glow);box-shadow:0 6px 28px rgba(99,102,241,0.15);}
+.exp-visual{
+  background:var(--void2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem 1.5rem;gap:1rem;
+  position:relative;overflow:hidden;
+}
+.exp-visual::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,var(--indigo-dim) 0%,transparent 70%);
+  pointer-events:none;
+}
+.exp-visual.amb::before{background:radial-gradient(ellipse at center,var(--amber-dim) 0%,transparent 70%);}
+.exp-visual.grn::before{background:radial-gradient(ellipse at center,rgba(16,185,129,.1) 0%,transparent 70%);}
+.exp-visual canvas,.exp-visual svg.anim-scene{
+  width:140px;height:140px;position:relative;z-index:1;
+}
+.exp-visual-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--indigo);
+  text-align:center;position:relative;z-index:1;
+}
+.exp-visual.amb .exp-visual-label{color:var(--amber);}
+.exp-visual.grn .exp-visual-label{color:var(--green);}
+
+.exp-body{padding:2rem 2rem;}
+.exp-header{margin-bottom:1.25rem;}
+.exp-date{font-family:var(--mono);font-size:9.5px;color:var(--slate2);letter-spacing:.08em;margin-bottom:5px;}
+.exp-co{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:3px;}
+.exp-loc{font-family:var(--mono);font-size:9.5px;color:var(--slate2);}
+.exp-role{font-size:1.05rem;font-weight:700;color:var(--snow);margin:1rem 0 .75rem;}
+.exp-summary{
+  font-family:var(--mono);font-size:12.5px;color:var(--slate);
+  line-height:1.85;font-weight:300;margin-bottom:1.5rem;
+}
+.exp-summary strong{color:var(--snow);font-weight:600;}
+.exp-skills{display:flex;flex-wrap:wrap;gap:6px;}
+.exp-skill{
+  font-family:var(--mono);font-size:10px;letter-spacing:.05em;
+  padding:4px 10px;border-radius:3px;
+  background:var(--indigo-dim);color:var(--indigo);
+  border:1px solid var(--indigo-glow);
+}
+.exp-skill.amb{background:var(--amber-dim);color:var(--amber2);border-color:var(--amber-glow);}
+.exp-skill.grn{background:rgba(16,185,129,.1);color:#10B981;border-color:rgba(16,185,129,.25);}
+
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes rotateSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes dash{to{stroke-dashoffset:0}}
+@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes scaleIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes moveRight{0%{transform:translateX(-8px);opacity:0}60%{opacity:1}100%{transform:translateX(8px);opacity:0}}
+@keyframes fillBar{from{width:0}to{width:var(--w)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.hi{color:var(--snow);font-weight:600;}
+
+@media(max-width:760px){
+  .exp-card{grid-template-columns:1fr;}
+  .exp-visual{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}
+}
+
+/* ===== SKILLS ===== */
+#skills{border-top:1px solid var(--border);background:var(--void2);}
+.skills-os{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+}
+.skill-module{
+  background:var(--card);padding:1.5rem 1.75rem;
+  transition:background .2s;
+}
+.skill-module:hover{background:var(--void2);}
+.sm-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1rem;padding-bottom:.75rem;
+  border-bottom:1px solid var(--border);
+}
+.sm-title{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);}
+.sm-id{font-family:var(--mono);font-size:8.5px;color:var(--slate2);padding:2px 6px;border-radius:2px;background:rgba(0,0,0,.04);}
+.sm-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.sm-pill{
+  font-family:var(--mono);font-size:11.5px;color:var(--slate);
+  padding:4px 10px;border-radius:3px;
+  background:var(--void2);border:1px solid var(--border);
+  transition:all .18s;cursor:default;
+}
+.sm-pill:hover{border-color:var(--indigo-glow);color:var(--snow);}
+
+/* ===== PROJECTS ===== */
+#projects{border-top:1px solid var(--border);}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);
+  padding:1.75rem;border-radius:10px;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.proj-card::after{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--indigo),var(--amber2));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s;
+}
+.proj-card:hover{border-color:var(--border2);}
+.proj-card:hover::after{transform:scaleX(1);}
+.proj-ts{font-family:var(--mono);font-size:9.5px;color:var(--slate2);letter-spacing:.08em;margin-bottom:.5rem;}
+.proj-name{font-size:1rem;font-weight:700;color:var(--snow);margin-bottom:.75rem;}
+.proj-body{font-family:var(--mono);font-size:12.5px;color:var(--slate);line-height:1.75;font-weight:300;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.25rem;}
+
+/* ===== AI CHAT ===== */
+#ai-chat{border-top:1px solid var(--border);background:var(--void2);}
+.ai-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:4.5rem;align-items:start;}
+.ai-intro p{font-family:var(--mono);font-size:13px;color:var(--slate);line-height:1.85;margin-bottom:.85rem;font-weight:300;}
+.ai-intro p strong{color:var(--snow);font-weight:600;}
+.qs-list{display:flex;flex-direction:column;gap:.5rem;margin-top:1.5rem;}
+.qs-btn{
+  font-family:var(--mono);font-size:12px;color:var(--slate);
+  padding:9px 14px;border:1px solid var(--border);
+  background:var(--card);cursor:pointer;text-align:left;
+  transition:all .18s;display:flex;align-items:center;gap:10px;
+  border-radius:4px;
+}
+.qs-btn:hover{border-color:var(--indigo-glow);color:var(--snow);}
+.qs-btn::before{content:'›';color:var(--indigo2);font-size:16px;line-height:1;font-family:var(--font);}
+
+.chat-box{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+}
+.chat-hd{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;border-bottom:1px solid var(--border);
+  background:var(--void2);
+}
+.chat-hd-icon{
+  width:30px;height:30px;border-radius:7px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--indigo-dim),var(--amber-dim));
+  border:1px solid var(--indigo-glow);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;color:var(--indigo2);font-weight:500;
+}
+.chat-hd-name{font-size:12.5px;font-weight:700;color:var(--snow);flex:1;}
+.chat-hd-st{
+  font-family:var(--mono);font-size:9.5px;color:var(--green);
+  display:flex;align-items:center;gap:5px;
+}
+.chat-msgs{
+  min-height:290px;max-height:360px;overflow-y:auto;
+  padding:1.25rem;display:flex;flex-direction:column;gap:.9rem;
+  background:var(--void3);
+}
+.chat-msgs::-webkit-scrollbar{width:3px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--slate2);}
+.cm{display:flex;gap:9px;align-items:flex-start;}
+.cm-av{
+  width:26px;height:26px;border-radius:6px;flex-shrink:0;margin-top:2px;
+  background:var(--indigo-dim);border:1px solid var(--indigo-glow);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;color:var(--indigo);
+}
+.cm-av.u{background:var(--void2);border-color:var(--border);color:var(--slate);}
+.cm-bub{
+  background:var(--void2);border:1px solid var(--border);
+  padding:10px 14px;border-radius:4px 10px 10px 10px;
+  font-family:var(--mono);font-size:12.5px;color:var(--slate);
+  line-height:1.65;flex:1;font-weight:300;
+}
+.cm.user{flex-direction:row-reverse;}
+.cm.user .cm-bub{background:var(--indigo-dim);border-color:var(--indigo-glow);color:var(--snow);border-radius:10px 4px 10px 10px;}
+.tdots{display:inline-flex;gap:4px;align-items:center;padding:4px 0;}
+.tdots span{width:5px;height:5px;border-radius:50%;background:var(--slate2);animation:td 1.2s ease-in-out infinite;}
+.tdots span:nth-child(2){animation-delay:.2s;}.tdots span:nth-child(3){animation-delay:.4s;}
+@keyframes td{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.chat-ft{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);background:var(--void2);}
+.chat-in{
+  flex:1;background:var(--card);border:1px solid var(--border);
+  padding:9px 14px;font-size:12.5px;color:var(--snow);font-family:var(--mono);
+  outline:none;transition:border-color .2s;border-radius:4px;font-weight:300;
+}
+.chat-in::placeholder{color:var(--slate2);}
+.chat-in:focus{border-color:var(--indigo-glow);}
+.chat-sb{
+  background:linear-gradient(135deg,var(--indigo),#5558E4);
+  color:#fff;border:none;padding:9px 18px;
+  font-size:11.5px;font-weight:600;font-family:var(--mono);
+  cursor:pointer;letter-spacing:.06em;transition:opacity .2s;
+  border-radius:4px;
+}
+.chat-sb:hover{opacity:.88;}
+.chat-sb:disabled{opacity:.4;cursor:not-allowed;}
+.chat-err{
+  font-family:var(--mono);font-size:11px;color:#f87171;
+  padding:7px 16px;background:rgba(248,113,113,.07);
+  border-top:1px solid rgba(248,113,113,.15);display:none;
+}
+
+/* ===== CONTACT ===== */
+#contact{border-top:1px solid var(--border);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.contact-copy h2{margin-bottom:.75rem;}
+.contact-copy p{font-family:var(--mono);font-size:13px;color:var(--slate);max-width:380px;line-height:1.85;font-weight:300;}
+.clinks{display:flex;flex-direction:column;gap:.75rem;}
+.cl{
+  display:flex;align-items:center;gap:12px;text-decoration:none;
+  color:var(--slate);font-family:var(--mono);font-size:12.5px;
+  padding:12px 16px;border:1px solid var(--border);
+  background:var(--card);transition:all .18s;white-space:nowrap;
+  border-radius:6px;
+}
+.cl:hover{border-color:var(--indigo-glow);color:var(--snow);}
+.cl-icon{
+  width:30px;height:30px;border-radius:6px;flex-shrink:0;
+  background:var(--indigo-dim);border:1px solid var(--indigo-glow);
+  display:flex;align-items:center;justify-content:center;
+}
+.cl-icon svg{width:13px;height:13px;stroke:var(--indigo);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:1.75rem 0;background:var(--void2);}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:var(--slate2);letter-spacing:.06em;}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+  .about-grid,.ai-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .exp-row{grid-template-columns:1fr;gap:.5rem;}
+  .proj-grid,.skills-os{grid-template-columns:1fr;}
+  .kpi-strip{grid-template-columns:repeat(2,1fr);}
+  .nav-links{display:none;}
+  h1{font-size:3rem;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-mark">AS</div>
+    <span class="nav-logo-text">ARYAN RAHUL<span> SHAH</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">exp</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#ai-chat">ai_chat</a></li>
+  </ul>
+  <a href="mailto:shah.aryanra@northeastern.edu" class="nav-status" style="text-decoration:none;cursor:pointer;">
+    <span class="blink"></span>HIRE ME
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-canvas-wrap">
+    <canvas id="neural-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-tag"><span>◈</span> AI-DRIVEN SUPPLY CHAIN PROFESSIONAL</div>
+      <h1>
+        <span class="h1-line1">Supply Chain.</span>
+        <span class="h1-line2">Powered by AI.</span>
+      </h1>
+      <p class="hero-desc">Transforming supply chain data into decisive action — combining 3+ years of Sourcing &amp; Procurement, Inventory, and Logistics expertise with AI-powered analytics and ERP intelligence to identify opportunities in 30 days, optimize processes in 60 days, and deliver measurable business impact within 90 days.</p>
+      <div class="hero-btns">
+        <a href="#ai-chat" class="btn btn-indigo">◈ Ask the AI about me</a>
+        <a href="#experience" class="btn btn-amber">View experience →</a>
+        <a href="mailto:shah.aryanra@northeastern.edu" class="btn btn-ghost">Contact</a>
+      </div>
+    </div>
+    <div class="hero-kpi-wrap">
+      <div class="kpi-strip">
+        <div class="kpi-cell">
+          <div class="kpi-cell-top">inventory_ops</div>
+          <div class="kpi-val">$2M<span class="ku">+</span></div>
+          <div class="kpi-bar-fill" style="width:90%;"></div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-cell-top">procurement_spend</div>
+          <div class="kpi-val">$500K<span class="ku">+</span></div>
+          <div class="kpi-bar-fill" style="width:65%;"></div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-cell-top">on_time_dispatch</div>
+          <div class="kpi-val">98<span class="ku">%</span></div>
+          <div class="kpi-bar-fill" style="width:98%;"></div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-cell-top">global_vendors</div>
+          <div class="kpi-val">15<span class="ku">+</span></div>
+          <div class="kpi-bar-fill" style="width:45%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="div-bar">
+  <div class="ticker-track">
+    <span>◈ Supply Chain Analyst</span><span class="dim">·</span>
+    <span>◈ Oracle ERP</span><span class="dim">·</span>
+    <span>
+    <span>◈ Inventory Planning</span><span class="dim">·</span>
+    <span>◈ SQL Analytics</span><span class="dim">·</span>
+    <span>◈ Demand Forecasting</span><span class="dim">·</span>
+    <span>◈ SAP</span><span class="dim">·</span>
+    <span>◈ Procurement</span><span class="dim">·</span>
+    <span>◈ Power BI</span><span class="dim">·</span>
+    <span>◈ S&amp;OP</span><span class="dim">·</span>
+    <span>◈ Vendor Management</span><span class="dim">·</span>
+    <span>◈ Root Cause Analysis</span><span class="dim">·</span>
+    <span>◈ SNAP Fulfill</span><span class="dim">·</span>
+    <span>◈ EDI Systems</span><span class="dim">·</span>
+    <span>◈ Safety Stock</span><span class="dim">·</span>
+    <span>◈ Replenishment</span><span class="dim">·</span>
+    <span>◈ KPI Reporting</span><span class="dim">·</span>
+    <span>◈ Supply Chain Analyst</span><span class="dim">·</span>
+    <span>◈ Oracle ERP</span><span class="dim">·</span>
+    <span>
+    <span>◈ Inventory Planning</span><span class="dim">·</span>
+    <span>◈ SQL Analytics</span><span class="dim">·</span>
+    <span>◈ Demand Forecasting</span><span class="dim">·</span>
+    <span>◈ SAP</span><span class="dim">·</span>
+    <span>◈ Procurement</span><span class="dim">·</span>
+    <span>◈ Power BI</span><span class="dim">·</span>
+    <span>◈ S&amp;OP</span><span class="dim">·</span>
+    <span>◈ Vendor Management</span><span class="dim">·</span>
+    <span>◈ Root Cause Analysis</span><span class="dim">·</span>
+    <span>◈ SNAP Fulfill</span><span class="dim">·</span>
+    <span>◈ EDI Systems</span><span class="dim">·</span>
+    <span>◈ Safety Stock</span><span class="dim">·</span>
+    <span>◈ Replenishment</span><span class="dim">·</span>
+    <span>◈ KPI Reporting</span><span class="dim">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <p class="sys-label"><span class="lbracket">[</span>01<span class="lbracket">]</span> about.init()</p>
+    <div class="about-grid">
+      <div class="about-body">
+        <h2>Where supply chain meets intelligent systems</h2>
+        <div class="sub">3 roles · Mumbai → Boston · manufacturing, logistics, e-commerce</div>
+        <p>I started at <strong>Ankur Fabrics</strong> coordinating 250+ daily orders and last-mile logistics — where precision at the SKU level became instinct. That grounding in operational reality is what makes AI tools useful rather than theoretical.</p>
+        <p>At <strong>Sambhav Transmission</strong> I owned $500K+ in global procurement spend, running SQL-backed supplier performance reviews and building dashboards that turned raw ERP data into sourcing decisions. <span class="ai-tag">◈ data-driven</span></p>
+        <p>Now at <strong>Tighe Logistics</strong> (co-op, Northeastern MS), I'm applying Oracle ERP, SNAP Fulfill, and transaction-level SQL queries to Amazon Robotics operations — the sharp edge of where AI-enabled logistics actually runs.</p>
+      </div>
+      <div>
+        <p class="sys-label" style="margin-bottom:1.25rem;">Education</p>
+        <div class="edu-stack">
+          <div class="edu-card">
+            <div class="edu-school">Northeastern University</div>
+            <div class="edu-loc" style="font-family:var(--mono);font-size:10px;color:var(--slate2);margin-top:2px;">Boston, MA</div>
+            <div class="edu-deg">MS, Project Management</div>
+            <div class="edu-foot">
+              <span class="chip chip-i">GPA 3.72</span>
+              <span class="chip chip-g">2024 – 2026</span>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-school">Nagindas Khandwala College</div>
+            <div class="edu-loc" style="font-family:var(--mono);font-size:10px;color:var(--slate2);margin-top:2px;">Mumbai, India</div>
+            <div class="edu-deg">BMS, E-commerce Operations</div>
+            <div class="edu-foot">
+              <span class="chip chip-i">GPA 3.8</span>
+              <span class="chip chip-g">2020 – 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <p class="sys-label"><span class="lbracket">[</span>02<span class="lbracket">]</span> Experience</p>
+    <h2>Where I've shipped results</h2>
+    <div class="sub" style="margin-bottom:0;">most recent first</div>
+    <br/>
+
+    <div class="exp-cards">
+
+      <!-- CARD 1: TIGHE LOGISTICS -->
+      <div class="exp-card">
+        <div class="exp-visual">
+          <svg class="anim-scene" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- Analyst at dashboard: monitor + data streams + nodes -->
+            <!-- Monitor frame -->
+            <rect x="25" y="30" width="90" height="58" rx="4" fill="none" stroke="#6366F1" stroke-width="1.5" stroke-dasharray="60" stroke-dashoffset="60" style="animation:dash 1s ease .1s forwards"/>
+            <rect x="25" y="30" width="90" height="8" rx="0" fill="#6366F120" style="animation:scaleIn .5s ease .8s both"/>
+            <!-- Screen content: bars -->
+            <rect x="33" y="46" width="8" height="28" rx="1" fill="#6366F140" style="animation:scaleIn .4s ease 1s both"/>
+            <rect x="46" y="52" width="8" height="22" rx="1" fill="#6366F160" style="animation:scaleIn .4s ease 1.1s both"/>
+            <rect x="59" y="44" width="8" height="30" rx="1" fill="#818CF8" style="animation:scaleIn .4s ease 1.2s both"/>
+            <rect x="72" y="49" width="8" height="25" rx="1" fill="#6366F160" style="animation:scaleIn .4s ease 1.3s both"/>
+            <rect x="85" y="42" width="8" height="32" rx="1" fill="#818CF880" style="animation:scaleIn .4s ease 1.4s both"/>
+            <!-- Trend line -->
+            <polyline points="33,66 46,60 59,55 72,58 85,50 103,44" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="80" stroke-dashoffset="80" style="animation:dash 1.2s ease 1.5s forwards"/>
+            <!-- Stand -->
+            <line x1="70" y1="88" x2="70" y2="98" stroke="#6366F180" stroke-width="2" style="animation:scaleIn .3s ease 1.8s both"/>
+            <line x1="55" y1="98" x2="85" y2="98" stroke="#6366F180" stroke-width="2" style="animation:scaleIn .3s ease 1.9s both"/>
+            <!-- Floating data nodes -->
+            <circle cx="18" cy="45" r="5" fill="none" stroke="#6366F1" stroke-width="1.2" style="animation:floatY 3s ease-in-out infinite"/>
+            <circle cx="122" cy="55" r="4" fill="none" stroke="#F59E0B" stroke-width="1.2" style="animation:floatY 2.5s ease-in-out .5s infinite"/>
+            <circle cx="15" cy="80" r="3" fill="#6366F140" style="animation:floatY 3.5s ease-in-out 1s infinite"/>
+            <!-- Connecting lines to nodes -->
+            <line x1="23" y1="45" x2="25" y2="55" stroke="#6366F140" stroke-width="1" stroke-dasharray="4 3" style="animation:scaleIn .5s ease 2s both"/>
+            <line x1="117" y1="55" x2="115" y2="65" stroke="#F59E0B40" stroke-width="1" stroke-dasharray="4 3" style="animation:scaleIn .5s ease 2.1s both"/>
+            <!-- Pulse dot on trend -->
+            <circle cx="103" cy="44" r="3" fill="#F59E0B" style="animation:blinkDot 1.5s ease-in-out infinite"/>
+            <!-- Label -->
+            <text x="70" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#6366F180" letter-spacing="1">ERP ANALYST</text>
+          </svg>
+          <div class="exp-visual-label">Supply Chain Coordinator</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div class="exp-date">JUL – DEC 2025</div>
+            <div class="exp-co">Tighe Logistics</div>
+            <div class="exp-loc">Boston, MA</div>
+          </div>
+          <div class="exp-role">Supply Chain Coordinator & Business Analyst Co-op</div>
+          <div class="exp-summary">
+            Managed <strong>$2M+ in inventory operations</strong> overseeing end-to-end inbound and outbound workflows — receiving, putaway, order fulfillment, and shipment coordination — using Oracle ERP, SNAP Fulfill, and EDI to drive an 8% accuracy uplift across the DC.<br/><br/>
+            Worked closely with the <strong>Amazon Robotics team</strong> on-site, using SQL to surface transaction-level discrepancies and execute corrective actions that cut fulfillment delays by 15%. Built weekly forecast accuracy and bias reports that improved planning decisions by 9% across the logistics team.
+          </div>
+          <div class="exp-skills">
+            <span class="exp-skill">Oracle ERP</span>
+            <span class="exp-skill">SNAP Fulfill</span>
+            <span class="exp-skill">EDI Systems</span>
+            <span class="exp-skill">SQL</span>
+            <span class="exp-skill">Power BI</span>
+            <span class="exp-skill amb">Demand Planning</span>
+            <span class="exp-skill amb">Forecast Accuracy</span>
+            <span class="exp-skill grn">Root Cause Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: SAMBHAV TRANSMISSION -->
+      <div class="exp-card">
+        <div class="exp-visual amb">
+          <svg class="anim-scene" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- Procurement: globe + vendor nodes + contract/RFQ flow -->
+            <!-- Globe -->
+            <circle cx="70" cy="62" r="32" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="100" stroke-dashoffset="100" style="animation:dash 1.2s ease .2s forwards"/>
+            <ellipse cx="70" cy="62" rx="16" ry="32" fill="none" stroke="#F59E0B60" stroke-width="1" stroke-dasharray="60" stroke-dashoffset="60" style="animation:dash 1s ease .8s forwards"/>
+            <line x1="38" y1="62" x2="102" y2="62" stroke="#F59E0B40" stroke-width="1" stroke-dasharray="40" stroke-dashoffset="40" style="animation:dash .8s ease 1s forwards"/>
+            <line x1="42" y1="45" x2="98" y2="45" stroke="#F59E0B30" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .8s ease 1.1s forwards"/>
+            <line x1="42" y1="79" x2="98" y2="79" stroke="#F59E0B30" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .8s ease 1.2s forwards"/>
+            <!-- Vendor nodes orbiting -->
+            <circle cx="70" cy="28" r="6" fill="#F59E0B20" stroke="#F59E0B" stroke-width="1.2" style="animation:floatY 3s ease-in-out infinite"/>
+            <circle cx="104" cy="50" r="5" fill="#F59E0B20" stroke="#F59E0B80" stroke-width="1.2" style="animation:floatY 2.8s ease-in-out .3s infinite"/>
+            <circle cx="104" cy="75" r="5" fill="#F59E0B20" stroke="#F59E0B80" stroke-width="1.2" style="animation:floatY 3.2s ease-in-out .6s infinite"/>
+            <circle cx="70" cy="96" r="6" fill="#F59E0B20" stroke="#F59E0B" stroke-width="1.2" style="animation:floatY 2.6s ease-in-out .9s infinite"/>
+            <circle cx="36" cy="75" r="5" fill="#F59E0B20" stroke="#F59E0B80" stroke-width="1.2" style="animation:floatY 3.4s ease-in-out 1.2s infinite"/>
+            <circle cx="36" cy="50" r="5" fill="#F59E0B20" stroke="#F59E0B80" stroke-width="1.2" style="animation:floatY 2.9s ease-in-out 1.5s infinite"/>
+            <!-- Center pulse -->
+            <circle cx="70" cy="62" r="5" fill="#F59E0B" style="animation:blinkDot 1.8s ease-in-out infinite"/>
+            <circle cx="70" cy="62" r="10" fill="none" stroke="#F59E0B40" stroke-width="1" style="animation:blinkDot 1.8s ease-in-out .9s infinite"/>
+            <!-- Label -->
+            <text x="70" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#F59E0B80" letter-spacing="1">PROCUREMENT</text>
+          </svg>
+          <div class="exp-visual-label">Sourcing & Procurement</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div class="exp-date">MAR 2023 – AUG 2024</div>
+            <div class="exp-co">Sambhav Transmission</div>
+            <div class="exp-loc">Mumbai, India</div>
+          </div>
+          <div class="exp-role">Sourcing & Procurement Associate</div>
+          <div class="exp-summary">
+            Owned <strong>$500K+ in annual procurement spend</strong> across 15+ international vendors — managing end-to-end RFQ cycles, reducing material availability gaps by 10%, and raising vendor line fill rate by 12% through structured KPI dashboards.<br/><br/>
+            Aligned sourcing decisions across planning, procurement, and operations to strengthen supply continuity and improve efficiency by 6%.
+          </div>
+          <div class="exp-skills">
+            <span class="exp-skill amb">Oracle ERP</span>
+            <span class="exp-skill amb">Vendor Management</span>
+            <span class="exp-skill amb">RFQ Cycles</span>
+            <span class="exp-skill amb">Supplier KPIs</span>
+            <span class="exp-skill">Excel Advanced</span>
+            <span class="exp-skill">S&OP</span>
+            <span class="exp-skill grn">Cost Analysis</span>
+            <span class="exp-skill grn">Lead Time Mgmt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: ANKUR FABRICS -->
+      <div class="exp-card">
+        <div class="exp-visual grn">
+          <svg class="anim-scene" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- Logistics: truck moving + warehouse + SKU flow -->
+            <!-- Warehouse building -->
+            <rect x="10" y="55" width="45" height="35" rx="2" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="60" stroke-dashoffset="60" style="animation:dash .9s ease .1s forwards"/>
+            <polygon points="10,55 32,38 55,55" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="50" stroke-dashoffset="50" style="animation:dash .9s ease .6s forwards"/>
+            <!-- Warehouse door -->
+            <rect x="24" y="70" width="16" height="20" rx="1" fill="#10B98120" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 1s both"/>
+            <!-- Shelves inside warehouse -->
+            <line x1="13" y1="68" x2="52" y2="68" stroke="#10B98140" stroke-width="1" style="animation:scaleIn .3s ease 1.2s both"/>
+            <!-- Moving truck -->
+            <g style="animation:moveRight 2.5s ease-in-out 1.5s infinite">
+              <rect x="65" y="72" width="35" height="18" rx="2" fill="#10B98120" stroke="#10B981" stroke-width="1.2"/>
+              <rect x="90" y="65" width="18" height="25" rx="2" fill="#10B98130" stroke="#10B98180" stroke-width="1"/>
+              <circle cx="72" cy="92" r="4" fill="#10B981" stroke="#0d9268" stroke-width="1"/>
+              <circle cx="96" cy="92" r="4" fill="#10B981" stroke="#0d9268" stroke-width="1"/>
+            </g>
+            <!-- Road -->
+            <line x1="10" y1="97" x2="130" y2="97" stroke="#10B98130" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash 2s ease 1s forwards"/>
+            <!-- SKU boxes stacked -->
+            <rect x="115" y="60" width="14" height="12" rx="1" fill="#10B98120" stroke="#10B98160" stroke-width="1" style="animation:floatY 3s ease-in-out infinite"/>
+            <rect x="113" y="72" width="18" height="12" rx="1" fill="#10B98130" stroke="#10B98180" stroke-width="1" style="animation:floatY 3s ease-in-out .3s infinite"/>
+            <rect x="111" y="84" width="22" height="12" rx="1" fill="#10B98140" stroke="#10B981" stroke-width="1" style="animation:floatY 3s ease-in-out .6s infinite"/>
+            <!-- Dispatch check -->
+            <circle cx="32" cy="25" r="10" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="40" stroke-dashoffset="40" style="animation:dash .8s ease 2s forwards"/>
+            <polyline points="26,25 30,30 38,20" fill="none" stroke="#10B981" stroke-width="2" stroke-dasharray="20" stroke-dashoffset="20" style="animation:dash .6s ease 2.5s forwards"/>
+            <!-- Label -->
+            <text x="70" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#10B98180" letter-spacing="1">LOGISTICS OPS</text>
+          </svg>
+          <div class="exp-visual-label">E-commerce & Logistics</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div class="exp-date">JAN – DEC 2022</div>
+            <div class="exp-co">Ankur Fabrics</div>
+            <div class="exp-loc">Mumbai, India</div>
+          </div>
+          <div class="exp-role">E-commerce Specialist & Logistics Coordinator</div>
+          <div class="exp-summary">
+            Achieved <strong>98% on-time dispatch</strong> across $300K in annual orders by optimizing shipment schedules for 250+ daily orders with 3PL providers and cutting delivery delays by 7%.<br/><br/>
+            Reduced stock discrepancies by 9% across 500+ SKUs via monthly reconciliations, and improved inventory reliability by 8% using WMS tools and advanced Excel.
+          </div>
+          <div class="exp-skills">
+            <span class="exp-skill grn">3PL Coordination</span>
+            <span class="exp-skill grn">Last Mile Ops</span>
+            <span class="exp-skill grn">WMS</span>
+            <span class="exp-skill grn">SKU Management</span>
+            <span class="exp-skill">Excel Advanced</span>
+            <span class="exp-skill">Inventory Reconciliation</span>
+            <span class="exp-skill amb">Order Management</span>
+            <span class="exp-skill amb">Dispatch Planning</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <p class="sys-label"><span class="lbracket">[</span>03<span class="lbracket">]</span> skills.map()</p>
+    <h2>The stack I operate in</h2>
+    <div class="sub" style="margin-bottom:1.5rem;">systems · data · operations · planning</div>
+    <div class="skills-os">
+      <div class="skill-module">
+        <div class="sm-head">
+          <span class="sm-title">Systems & ERP</span>
+          <span class="sm-id">MOD_001</span>
+        </div>
+        <div class="sm-pills">
+          <span class="sm-pill">Oracle ERP</span><span class="sm-pill">SAP</span>
+          <span class="sm-pill">SNAP Fulfill</span><span class="sm-pill">EDI Systems</span>
+          <span class="sm-pill">Jira</span>
+        </div>
+      </div>
+      <div class="skill-module">
+        <div class="sm-head">
+          <span class="sm-title">Data & Analytics</span>
+          <span class="sm-id">MOD_002</span>
+        </div>
+        <div class="sm-pills">
+          <span class="sm-pill">SQL</span><span class="sm-pill">Power BI</span>
+          <span class="sm-pill">Excel Advanced</span><span class="sm-pill">Pivot Tables</span>
+          <span class="sm-pill">VLookups</span>
+        </div>
+      </div>
+      <div class="skill-module">
+        <div class="sm-head">
+          <span class="sm-title">Supply Chain & Planning</span>
+          <span class="sm-id">MOD_003</span>
+        </div>
+        <div class="sm-pills">
+          <span class="sm-pill">Procurement</span><span class="sm-pill">Inventory Mgmt</span>
+          <span class="sm-pill">Demand Planning</span><span class="sm-pill">Safety Stock</span>
+          <span class="sm-pill">S&OP</span><span class="sm-pill">KPI Reporting</span>
+        </div>
+      </div>
+      <div class="skill-module">
+        <div class="sm-head">
+          <span class="sm-title">Operations</span>
+          <span class="sm-id">MOD_004</span>
+        </div>
+        <div class="sm-pills">
+          <span class="sm-pill">Root Cause Analysis</span><span class="sm-pill">SOP Development</span>
+          <span class="sm-pill">Vendor Negotiation</span><span class="sm-pill">Cross-functional</span>
+          <span class="sm-pill">Replenishment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <p class="sys-label"><span class="lbracket">[</span>04<span class="lbracket">]</span> projects.render()</p>
+    <h2>Applied work</h2>
+    <div class="sub" style="margin-bottom:1.5rem;">operations work beyond the day job</div>
+    <div class="exp-cards">
+
+      <!-- PROJECT 1: AMAZON SELLER CENTRAL -->
+      <div class="exp-card">
+        <div class="exp-visual" style="min-height:260px;position:relative;overflow:hidden;">
+          <svg class="anim-scene" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:160px;">
+
+            <!-- PHONE / listing screen -->
+            <rect x="48" y="8" width="44" height="72" rx="5" fill="none" stroke="#6366F1" stroke-width="1.5" stroke-dasharray="80" stroke-dashoffset="80" style="animation:dash 1s ease .1s forwards"/>
+            <rect x="48" y="8" width="44" height="10" rx="5" fill="#6366F120" style="animation:scaleIn .4s ease .9s both"/>
+            <!-- product image placeholder -->
+            <rect x="53" y="22" width="34" height="22" rx="2" fill="#6366F115" stroke="#6366F140" stroke-width="1" style="animation:scaleIn .4s ease 1s both"/>
+            <!-- shirt icon in listing -->
+            <path d="M62,27 L65,25 L70,28 L75,25 L78,27 L75,30 L75,40 L65,40 L65,30 Z" fill="none" stroke="#818CF8" stroke-width="1" stroke-dasharray="40" stroke-dashoffset="40" style="animation:dash .7s ease 1.2s forwards"/>
+            <!-- listing text lines -->
+            <rect x="53" y="47" width="28" height="2" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 1.4s both"/>
+            <rect x="53" y="52" width="20" height="2" rx="1" fill="#6366F140" style="animation:scaleIn .3s ease 1.5s both"/>
+            <!-- price tag -->
+            <rect x="53" y="57" width="14" height="7" rx="2" fill="#F59E0B20" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .3s ease 1.6s both"/>
+            <text x="60" y="63" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#F59E0B" style="animation:scaleIn .3s ease 1.7s both">$24.99</text>
+            <!-- star rating -->
+            <text x="60" y="73" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#F59E0B" style="animation:scaleIn .3s ease 1.8s both">★★★★★</text>
+
+            <!-- PACKING BOX - left -->
+            <rect x="6" y="88" width="32" height="26" rx="2" fill="#6366F110" stroke="#6366F180" stroke-width="1.2" stroke-dasharray="50" stroke-dashoffset="50" style="animation:dash .8s ease 1.8s forwards"/>
+            <rect x="6" y="88" width="32" height="8" rx="0" fill="#6366F120" style="animation:scaleIn .3s ease 2.4s both"/>
+            <!-- tape lines on box -->
+            <line x1="22" y1="88" x2="22" y2="114" stroke="#6366F160" stroke-width="1" stroke-dasharray="15" stroke-dashoffset="15" style="animation:dash .4s ease 2.5s forwards"/>
+            <!-- box label -->
+            <rect x="10" y="98" width="20" height="12" rx="1" fill="#F59E0B10" stroke="#F59E0B40" stroke-width=".8" style="animation:scaleIn .3s ease 2.6s both"/>
+            <text x="20" y="107" text-anchor="middle" font-family="JetBrains Mono" font-size="4" fill="#F59E0B80" style="animation:scaleIn .3s ease 2.7s both">SKU-042</text>
+
+            <!-- SHIPPING TRUCK - right, animated -->
+            <g style="animation:moveRight 3s ease-in-out 2.8s infinite">
+              <rect x="90" y="98" width="28" height="15" rx="2" fill="#6366F115" stroke="#6366F1" stroke-width="1.2"/>
+              <rect x="108" y="92" width="14" height="21" rx="2" fill="#6366F120" stroke="#6366F180" stroke-width="1"/>
+              <circle cx="97" cy="115" r="3.5" fill="#6366F1" />
+              <circle cx="114" cy="115" r="3.5" fill="#6366F1"/>
+            </g>
+            <!-- road -->
+            <line x1="5" y1="120" x2="135" y2="120" stroke="#6366F130" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash 2s ease 2s forwards"/>
+
+            <!-- FORECAST CHART - bottom -->
+            <rect x="5" y="128" width="130" height="24" rx="3" fill="#0C0D15" stroke="#6366F130" stroke-width="1" style="animation:scaleIn .4s ease 3s both"/>
+            <text x="10" y="136" font-family="JetBrains Mono" font-size="4.5" fill="#6366F180" style="animation:scaleIn .3s ease 3.2s both">INVENTORY FORECAST</text>
+            <!-- forecast bars -->
+            <rect x="10" y="140" width="8" height="8" rx="1" fill="#6366F140" style="animation:scaleIn .3s ease 3.3s both"/>
+            <rect x="21" y="137" width="8" height="11" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 3.4s both"/>
+            <rect x="32" y="134" width="8" height="14" rx="1" fill="#818CF8" style="animation:scaleIn .3s ease 3.5s both"/>
+            <rect x="43" y="136" width="8" height="12" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 3.6s both"/>
+            <rect x="54" y="133" width="8" height="15" rx="1" fill="#818CF8" style="animation:scaleIn .3s ease 3.7s both"/>
+            <rect x="65" y="135" width="8" height="13" rx="1" fill="#6366F160" style="animation:scaleIn .3s ease 3.8s both"/>
+            <!-- forecast line -->
+            <polyline points="14,144 25,141 36,137 47,139 58,136 69,138 80,133 91,135 102,131" fill="none" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="100" stroke-dashoffset="100" style="animation:dash 1s ease 3.8s forwards"/>
+            <!-- live dot -->
+            <circle cx="102" cy="131" r="2.5" fill="#F59E0B" style="animation:blinkDot 1.2s ease-in-out infinite"/>
+
+            <!-- Floating badges -->
+            <g style="animation:floatY 3s ease-in-out infinite">
+              <rect x="88" y="72" width="40" height="13" rx="3" fill="#F59E0B15" stroke="#F59E0B40" stroke-width=".8"/>
+              <text x="108" y="81" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B">+11% SALES</text>
+            </g>
+            <g style="animation:floatY 2.8s ease-in-out .6s infinite">
+              <rect x="5" y="72" width="38" height="13" rx="3" fill="#10B98115" stroke="#10B98140" stroke-width=".8"/>
+              <text x="24" y="81" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#10B981">80% STOCK</text>
+            </g>
+
+            <text x="70" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#6366F170" letter-spacing="1">AMAZON SELLER CENTRAL</text>
+          </svg>
+          <div class="exp-visual-label">E-commerce Operations</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div class="exp-date">APR – JUL 2022</div>
+            <div class="exp-co">Amazon Seller Central</div>
+            <div class="exp-loc">Mumbai, India · Project</div>
+          </div>
+          <div class="exp-role">SKU Optimization & E-commerce Efficiency Program</div>
+          <div class="exp-summary">
+            Built an end-to-end Amazon storefront operation — from product listing optimization and competitive pricing to packing workflows, 3PL shipping coordination, and live inventory forecasting. Scaled clothing sales by <strong>11%</strong> and maintained <strong>80% stock availability</strong> during peak demand by building real-time monitoring across all SKU categories.<br/><br/>
+            Synthesized monthly sales trends and inventory data through Excel pivot reports and Power BI dashboards, reducing order delays by 7% and improving KPI visibility by 5%.
+          </div>
+          <div class="exp-skills">
+            <span class="exp-skill">Amazon Seller Central</span>
+            <span class="exp-skill">Power BI</span>
+            <span class="exp-skill">Excel Advanced</span>
+            <span class="exp-skill amb">Inventory Forecasting</span>
+            <span class="exp-skill amb">SKU Management</span>
+            <span class="exp-skill amb">Pricing Strategy</span>
+            <span class="exp-skill grn">Listing Optimization</span>
+            <span class="exp-skill grn">3PL Shipping</span>
+            <span class="exp-skill grn">Demand Planning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: ERP SYSTEMS -->
+      <div class="exp-card">
+        <div class="exp-visual amb" style="min-height:260px;">
+          <svg class="anim-scene" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:160px;">
+
+            <!-- Central ERP hub -->
+            <circle cx="70" cy="68" r="20" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="80" stroke-dashoffset="80" style="animation:dash 1.2s ease .2s forwards"/>
+            <text x="70" y="66" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F59E0B" style="animation:scaleIn .4s ease 1.2s both">ORACLE</text>
+            <text x="70" y="74" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F59E0B80" style="animation:scaleIn .4s ease 1.4s both">ERP</text>
+
+            <!-- Spoke modules -->
+            <!-- Demand Planning - top -->
+            <line x1="70" y1="48" x2="70" y2="18" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="30" stroke-dashoffset="30" style="animation:dash .5s ease 1.6s forwards"/>
+            <rect x="52" y="6" width="36" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2s both"/>
+            <text x="70" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.1s both">DEMAND PLAN</text>
+
+            <!-- Supplier Mgmt - top right -->
+            <line x1="84" y1="54" x2="108" y2="30" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 1.7s forwards"/>
+            <rect x="100" y="20" width="34" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2.1s both"/>
+            <text x="117" y="30" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.2s both">SUPPLIER</text>
+
+            <!-- Replenishment - right -->
+            <line x1="90" y1="68" x2="120" y2="68" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="30" stroke-dashoffset="30" style="animation:dash .5s ease 1.8s forwards"/>
+            <rect x="118" y="61" width="18" height="14" rx="3" fill="#6366F115" stroke="#6366F160" stroke-width="1" style="animation:scaleIn .4s ease 2.2s both"/>
+            <text x="127" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#818CF8" style="animation:scaleIn .3s ease 2.3s both">REPL</text>
+
+            <!-- Inventory - bottom right -->
+            <line x1="84" y1="82" x2="108" y2="106" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 1.9s forwards"/>
+            <rect x="100" y="104" width="34" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2.3s both"/>
+            <text x="117" y="114" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.4s both">INVENTORY</text>
+
+            <!-- Safety Stock - bottom -->
+            <line x1="70" y1="88" x2="70" y2="114" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="26" stroke-dashoffset="26" style="animation:dash .5s ease 2s forwards"/>
+            <rect x="48" y="112" width="44" height="14" rx="3" fill="#10B98115" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 2.4s both"/>
+            <text x="70" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#10B981" style="animation:scaleIn .3s ease 2.5s both">SAFETY STOCK</text>
+
+            <!-- S&OP - bottom left -->
+            <line x1="56" y1="82" x2="32" y2="106" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 2.1s forwards"/>
+            <rect x="6" y="104" width="28" height="14" rx="3" fill="#F59E0B15" stroke="#F59E0B60" stroke-width="1" style="animation:scaleIn .4s ease 2.5s both"/>
+            <text x="20" y="114" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#F59E0B" style="animation:scaleIn .3s ease 2.6s both">S&OP</text>
+
+            <!-- KPI - left -->
+            <line x1="50" y1="68" x2="20" y2="68" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="30" stroke-dashoffset="30" style="animation:dash .5s ease 2.2s forwards"/>
+            <rect x="4" y="61" width="18" height="14" rx="3" fill="#6366F115" stroke="#6366F160" stroke-width="1" style="animation:scaleIn .4s ease 2.6s both"/>
+            <text x="13" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#818CF8" style="animation:scaleIn .3s ease 2.7s both">KPI</text>
+
+            <!-- top-left spoke -->
+            <line x1="56" y1="54" x2="32" y2="30" stroke="#F59E0B50" stroke-width="1" stroke-dasharray="35" stroke-dashoffset="35" style="animation:dash .5s ease 2.3s forwards"/>
+            <rect x="6" y="20" width="34" height="14" rx="3" fill="#10B98115" stroke="#10B98160" stroke-width="1" style="animation:scaleIn .4s ease 2.7s both"/>
+            <text x="23" y="30" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#10B981" style="animation:scaleIn .3s ease 2.8s both">REPLENISH</text>
+
+            <!-- Orbit ring pulse -->
+            <circle cx="70" cy="68" r="35" fill="none" stroke="#F59E0B15" stroke-width="1" style="animation:blinkDot 2.5s ease-in-out infinite"/>
+
+            <!-- Floating data packets on spokes -->
+            <circle cx="70" cy="33" r="2.5" fill="#F59E0B" style="animation:floatY 2s ease-in-out infinite"/>
+            <circle cx="100" cy="42" r="2" fill="#F59E0B80" style="animation:floatY 2.2s .4s ease-in-out infinite"/>
+            <circle cx="40" cy="42" r="2" fill="#10B98180" style="animation:floatY 1.8s .8s ease-in-out infinite"/>
+
+            <text x="70" y="152" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#F59E0B70" letter-spacing="1">ERP ECOSYSTEM</text>
+          </svg>
+          <div class="exp-visual-label">ERP Systems Design</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div class="exp-date">2024 – 2025</div>
+            <div class="exp-co">Northeastern University</div>
+            <div class="exp-loc">Boston, MA · Graduate Research</div>
+          </div>
+          <div class="exp-role">ERP Systems for Inventory Management</div>
+          <div class="exp-summary">
+            Designed a complete Oracle ERP-integrated inventory ecosystem — mapping demand planning, safety stock logic, replenishment triggers, supplier management, S&OP cycles, and KPI reporting into a unified operational framework.<br/><br/>
+            Applied the framework directly during Tighe Logistics co-op, bridging academic design with live $2M+ inventory operations — and validating replenishment and forecast bias workflows in a real Amazon Robotics environment.
+          </div>
+          <div class="exp-skills">
+            <span class="exp-skill amb">Oracle ERP</span>
+            <span class="exp-skill amb">Demand Planning</span>
+            <span class="exp-skill amb">Safety Stock</span>
+            <span class="exp-skill amb">S&OP</span>
+            <span class="exp-skill">Replenishment Logic</span>
+            <span class="exp-skill">Supplier Management</span>
+            <span class="exp-skill">KPI Reporting</span>
+            <span class="exp-skill grn">Inventory Optimization</span>
+            <span class="exp-skill grn">Forecast Bias Analysis</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section id="ai-chat">
+  <div class="wrap">
+    <p class="sys-label"><span class="lbracket">[</span>05<span class="lbracket">]</span> ai_assistant.connect()</p>
+    <div class="ai-grid">
+      <div class="ai-intro">
+        <h2>Ask my AI anything</h2>
+        <div class="sub">Claude · trained on my full resume & background</div>
+        <p>This AI knows my entire background — every role, every tool, every outcome. Ask it what you'd ask me in a first interview.</p>
+        <p>It can answer questions about my <strong>ERP experience</strong>, how I handle <strong>supply disruptions</strong>, my <strong>procurement methodology</strong>, or whether I'm the right fit for a specific role.</p>
+        <div class="qs-list">
+          <button class="qs-btn" onclick="sq(this)">What ERP systems has Aryan worked with?</button>
+          <button class="qs-btn" onclick="sq(this)">What was his biggest impact at Tighe Logistics?</button>
+          <button class="qs-btn" onclick="sq(this)">How does Aryan handle supply disruptions?</button>
+          <button class="qs-btn" onclick="sq(this)">What makes him a strong procurement candidate?</button>
+          <button class="qs-btn" onclick="sq(this)">Is Aryan open to full-time roles right now?</button>
+        </div>
+      </div>
+      <div class="chat-box">
+        <div class="chat-hd">
+          <div class="chat-hd-icon">◈</div>
+          <div class="chat-hd-name">aryan.ai — supply chain context loaded</div>
+          <div class="chat-hd-st"><span class="blink"></span>LIVE</div>
+        </div>
+        <div class="chat-msgs" id="chat-msgs">
+          <div class="cm">
+            <div class="cm-av">◈</div>
+            <div class="cm-bub">I know Aryan's full background — experience, tools, results, and availability. What would you like to know?</div>
+          </div>
+        </div>
+        <div class="chat-err" id="chat-err"></div>
+        <div class="chat-ft">
+          <input class="chat-in" id="chat-in" type="text" placeholder="ask anything about Aryan..."/>
+          <button class="chat-sb" id="chat-sb" onclick="send()">SEND</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="sys-label"><span class="lbracket">[</span>06<span class="lbracket">]</span> contact.open()</p>
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <h2>Let's build something better</h2>
+        <p>open to supply chain, procurement, and operations roles. Happy to talk ERP strategy, inventory logic, or how AI is reshaping fulfillment networks.</p>
+      </div>
+      <div class="clinks">
+        <a href="mailto:shah.aryanra@northeastern.edu" class="cl">
+          <div class="cl-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div>
+          shah.aryanra@northeastern.edu
+        </a>
+        <a href="tel:+18573398320" class="cl">
+          <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 012 2.12 2 2 0 014 .14h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          (857) 339-8320
+        </a>
+        <a href="https://linkedin.com/in/aryan-shah" target="_blank" rel="noopener" class="cl">
+          <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          LinkedIn profile
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>aryan.shah · supply_chain + ai</span>
+    <span>boston_ma · 2025</span>
+  </div>
+</footer>
+
+<script>
+/* ── NEURAL CANVAS ── */
+(function(){
+  const canvas = document.getElementById('neural-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // SC nodes: Supplier / Procurement / Warehouse / Logistics / Customer
+  // Plus AI "hidden layer" nodes scattered between
+  const W = ()=>canvas.width, H = ()=>canvas.height;
+
+  class Node {
+    constructor(x,y,type){
+      this.bx=x; this.by=y;
+      this.x=x*W(); this.y=y*H();
+      this.type=type; // 'sc' | 'ai'
+      this.r = type==='sc'?7:3.5;
+      this.ox=( Math.random()-.5)*40;
+      this.oy=( Math.random()-.5)*30;
+      this.speed=0.3+Math.random()*0.4;
+      this.t=Math.random()*Math.PI*2;
+      this.pulse=0;
+    }
+    update(){
+      this.t+=0.008*this.speed;
+      this.x=this.bx*W()+Math.sin(this.t)*this.ox;
+      this.y=this.by*H()+Math.cos(this.t*0.8)*this.oy;
+      if(this.pulse>0) this.pulse-=0.025;
+    }
+    draw(){
+      ctx.save();
+      if(this.type==='sc'){
+        const grd=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*3);
+        grd.addColorStop(0,'rgba(99,102,241,0.35)');
+        grd.addColorStop(1,'rgba(99,102,241,0)');
+        ctx.fillStyle=grd;
+        ctx.beginPath();ctx.arc(this.x,this.y,this.r*3,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='rgba(129,140,248,0.8)';
+        ctx.lineWidth=1.5;
+        ctx.fillStyle='rgba(99,102,241,0.25)';
+        ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+        ctx.fill();ctx.stroke();
+      } else {
+        ctx.fillStyle='rgba(245,158,11,0.55)';
+        ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill();
+      }
+      if(this.pulse>0){
+        ctx.strokeStyle=`rgba(99,102,241,${this.pulse*0.6})`;
+        ctx.lineWidth=1;
+        ctx.beginPath();ctx.arc(this.x,this.y,this.r+20*(1-this.pulse),0,Math.PI*2);ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+
+  // Supply chain backbone nodes (5)
+  const scNodes=[
+    new Node(.08,.45,'sc'),
+    new Node(.26,.42,'sc'),
+    new Node(.5,.48,'sc'),
+    new Node(.73,.44,'sc'),
+    new Node(.92,.47,'sc'),
+  ];
+  // AI hidden-layer nodes
+  const aiCount=22;
+  const aiNodes=Array.from({length:aiCount},()=>new Node(
+    .05+Math.random()*.9,
+    .15+Math.random()*.7,
+    'ai'
+  ));
+
+  const allNodes=[...scNodes,...aiNodes];
+
+  // Pulse packets
+  const packets=[];
+  function spawnPacket(from,to,color){
+    packets.push({from,to,t:0,speed:0.008+Math.random()*.006,color});
+  }
+
+  // Edges: SC backbone + AI cross-connections
+  const edges=[];
+  // SC backbone
+  for(let i=0;i<scNodes.length-1;i++) edges.push([scNodes[i],scNodes[i+1]]);
+  // AI connections
+  allNodes.forEach((n,i)=>{
+    allNodes.forEach((m,j)=>{
+      if(i>=j) return;
+      const dx=(n.bx-m.bx)*1000, dy=(n.by-m.by)*1000;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      const thresh = (n.type==='ai'&&m.type==='ai')? 220 : 280;
+      if(d<thresh && Math.random()<.55) edges.push([n,m]);
+    });
+  });
+
+  // Periodic pulses
+  let pTimer=0;
+  function maybeSpawn(){
+    pTimer++;
+    if(pTimer%45===0){
+      const from=allNodes[Math.floor(Math.random()*allNodes.length)];
+      const to=allNodes[Math.floor(Math.random()*allNodes.length)];
+      if(from!==to){
+        const color=Math.random()<.6?'rgba(99,102,241,':'rgba(245,158,11,';
+        spawnPacket(from,to,color);
+        if(Math.random()<.4) from.pulse=1;
+      }
+    }
+  }
+
+  function drawEdge(a,b){
+    const dx=(a.bx-b.bx),dy=(a.by-b.by);
+    const d=Math.sqrt(dx*dx+dy*dy);
+    const alpha = Math.max(0,.15 - d*.18);
+    if(alpha<=0) return;
+    ctx.save();
+    ctx.strokeStyle=`rgba(99,102,241,${alpha})`;
+    ctx.lineWidth=.6;
+    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+    ctx.restore();
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    allNodes.forEach(n=>n.update());
+    edges.forEach(([a,b])=>drawEdge(a,b));
+    // packets
+    for(let i=packets.length-1;i>=0;i--){
+      const p=packets[i];
+      p.t+=p.speed;
+      if(p.t>=1){packets.splice(i,1);continue;}
+      const x=p.from.x+(p.to.x-p.from.x)*p.t;
+      const y=p.from.y+(p.to.y-p.from.y)*p.t;
+      ctx.save();
+      const grd=ctx.createRadialGradient(x,y,0,x,y,8);
+      grd.addColorStop(0,p.color+'0.9)');
+      grd.addColorStop(1,p.color+'0)');
+      ctx.fillStyle=grd;
+      ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle=p.color+'1)';
+      ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.fill();
+      ctx.restore();
+    }
+    allNodes.forEach(n=>n.draw());
+    maybeSpawn();
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ── AI CHAT ── */
+const CONTEXT=`You are an AI embedded in Aryan Shah's AI-powered supply chain portfolio. Answer questions from recruiters, hiring managers, and supply chain professionals about his background.
+
+ARYAN SHAH:
+Email: shah.aryanra@northeastern.edu | Phone: (857) 339-8320 | Location: Boston, MA
+
+EDUCATION:
+- Northeastern University: MS Project Management, GPA 3.72 (2024–2026). Courses: ERP Systems for Inventory Management, Project Risk Management, Supplier Management
+- Nagindas Khandwala College: BMS E-commerce Operations, GPA 3.8 (2020–2023)
+
+EXPERIENCE:
+1. Supply Chain Coordinator & Business Analyst Co-op — Tighe Logistics, Boston (Jul–Dec 2025)
+   - +8% inventory accuracy across $2M+ inventory using Oracle ERP, SNAP Fulfill, EDI
+   - +9% planning decision accuracy via weekly forecast accuracy/bias reports
+   - -15% fulfillment delays via SQL root cause analysis with Amazon Robotics ops leads
+
+2. Sourcing & Procurement Associate — Sambhav Transmission, Mumbai (Mar 2023–Aug 2024)
+   - -10% material availability gaps through cross-functional alignment
+   - +12% vendor line fill rate via Excel/Oracle ERP supplier KPI dashboards
+   - Managed 15+ international vendors, $500K+ annual spend; +6% operational efficiency via structured RFQ cycles
+
+3. E-commerce Specialist & Logistics Coordinator — Ankur Fabrics, Mumbai (Jan–Dec 2022)
+   - 98% on-time dispatch, $300K annual order value, 250+ daily orders, -7% delays
+   - -9% stock discrepancies via 500+ SKU monthly reconciliation
+   - +8% inventory reliability via Excel and WMS tools
+
+SKILLS: Oracle ERP, SAP, SNAP Fulfill, EDI, SQL, Power BI, Advanced Excel, Jira, Procurement, Inventory Management, Demand Planning, Safety Stock, Replenishment, Supplier Management, KPI Reporting, S&OP, Root Cause Analysis, SOP Development, Vendor Negotiation
+
+PROJECTS:
+- SKU Optimization (Amazon Seller Central, 2022): +11% sales, 80% stock availability, -7% delays, Power BI dashboards
+- ERP Systems for Inventory Management (Northeastern, applied at Tighe Logistics)
+
+STATUS: Open to full-time supply chain, procurement, operations roles. Boston, MA. Graduating Jun 2026.
+
+Keep answers to 2-4 sentences, helpful and specific. For anything not covered, direct to shah.aryanra@northeastern.edu.`;
+
+let hist=[],busy=false;
+const msgs=document.getElementById('chat-msgs');
+const inp=document.getElementById('chat-in');
+const sbtn=document.getElementById('chat-sb');
+const cerr=document.getElementById('chat-err');
+
+function scrollB(){msgs.scrollTop=msgs.scrollHeight;}
+function addM(role,text){
+  const d=document.createElement('div');d.className='cm'+(role==='user'?' user':'');
+  const av=document.createElement('div');av.className='cm-av'+(role==='user'?' u':'');
+  av.textContent=role==='user'?'→':'◈';
+  const b=document.createElement('div');b.className='cm-bub';b.textContent=text;
+  d.appendChild(av);d.appendChild(b);msgs.appendChild(d);scrollB();
+}
+function addTyping(){
+  const d=document.createElement('div');d.className='cm';d.id='typin';
+  const av=document.createElement('div');av.className='cm-av';av.textContent='◈';
+  const b=document.createElement('div');b.className='cm-bub';
+  b.innerHTML='<div class="tdots"><span></span><span></span><span></span></div>';
+  d.appendChild(av);d.appendChild(b);msgs.appendChild(d);scrollB();
+}
+function rmTyping(){const t=document.getElementById('typin');if(t)t.remove();}
+function setB(v){busy=v;sbtn.disabled=v;inp.disabled=v;}
+
+async function send(){
+  const text=inp.value.trim();if(!text||busy)return;
+  inp.value='';cerr.style.display='none';
+  addM('user',text);hist.push({role:'user',content:text});
+  setB(true);addTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:CONTEXT,messages:hist})
+    });
+    rmTyping();
+    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||'API error '+res.status);}
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'No response generated.';
+    hist.push({role:'assistant',content:reply});addM('assistant',reply);
+  }catch(e){rmTyping();cerr.textContent='error: '+e.message;cerr.style.display='block';}
+  finally{setB(false);}
+}
+function sq(b){inp.value=b.textContent.trim();send();}
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
+</script>
+</body>
+</html>
